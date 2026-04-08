@@ -1,7 +1,15 @@
+:root {
+    --palette-1: #42A5F5;
+    --palette-2: #64B5F6;
+    --palette-3: #90CAF9;
+    --palette-4: #BBDEFB;
+    --palette-5: #E3F2FD;
+}
+
 html, body {
     height: 100%;
     margin: 0;
-    background-color: rgb(160, 222, 255);
+    background: linear-gradient(160deg, var(--palette-3) 0%, var(--palette-5) 100%);
 }
 
 
@@ -10,6 +18,13 @@ body {
     padding: 2rem;
     display: flex;
     flex-direction: column;
+    color: #12324a;
+}
+
+h1,
+h2,
+.h4 {
+    color: #0f3a57;
 }
 
 #plan-footer {
@@ -32,6 +47,8 @@ body {
     min-height: 0;
     display: flex;
     flex-direction: column;
+    background-color: rgba(227, 242, 253, 0.75) !important;
+    border-color: var(--palette-2) !important;
 }
 
 #cur-timer-name {
@@ -54,6 +71,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex: 0 0 50%;
+    max-width: 50%;
+    text-align: center;
 }
 
 #timer-image-panel {
@@ -61,14 +81,18 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    flex: 0 0 50%;
+    max-width: 50%;
+    text-align: center;
 }
 
 .timer-dog-image {
-    width: 220px;
-    max-width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    border-radius: 0.5rem;
+    border-color: var(--palette-2) !important;
+    background-color: var(--palette-5);
+}
+
+#timer-image-box {
+    max-width: 220px;
 }
 
 #timer-controls {
@@ -83,4 +107,84 @@ body {
 .remove-period-button-disabled {
     opacity: 0.5;
     cursor: not-allowed;
+}
+
+#plan-content,
+#plan-form,
+.timer-period-row {
+    border-color: var(--palette-3) !important;
+}
+
+#plan-form,
+#plan-content,
+.timer-period-row,
+#timer-image-panel,
+.toast {
+    border-radius: 0.75rem;
+}
+
+.form-control,
+.form-select {
+    border-color: var(--palette-3);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--palette-1);
+    box-shadow: 0 0 0 0.2rem rgba(66, 165, 245, 0.25);
+}
+
+#play-pause-btn,
+#save-plan-btn {
+    background-color: var(--palette-1);
+    border-color: var(--palette-1);
+}
+
+#play-pause-btn:hover,
+#save-plan-btn:hover {
+    background-color: #2e95eb;
+    border-color: #2e95eb;
+}
+
+#add-period-btn,
+#skip-backward-btn,
+#skip-forward-btn,
+.period-settings-toggle-button {
+    color: #1f5f8e;
+    border-color: var(--palette-2);
+    background-color: var(--palette-5);
+}
+
+#add-period-btn:hover,
+#skip-backward-btn:hover,
+#skip-forward-btn:hover,
+.period-settings-toggle-button:hover {
+    color: #11476c;
+    background-color: var(--palette-4);
+    border-color: var(--palette-2);
+}
+
+#reset-btn,
+.remove-period-button {
+    background-color: var(--palette-2);
+    border-color: var(--palette-2);
+    color: #0e3652;
+}
+
+#reset-btn:hover,
+.remove-period-button:hover {
+    background-color: var(--palette-1);
+    border-color: var(--palette-1);
+    color: #ffffff;
+}
+
+#plan-save-toast {
+    background-color: var(--palette-1) !important;
+}
+
+#plan-required-toast,
+#minimum-period-toast,
+#notification-issue-toast {
+    background-color: var(--palette-4) !important;
+    color: #12324a;
 }

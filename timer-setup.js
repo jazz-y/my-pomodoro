@@ -71,7 +71,7 @@ export const appendPeriodRow = () => {
 export const addPeriodRowTemplate = () => {
 
     const row = document.createElement("div");
-    row.classList.add("row", "g-2", "align-items-end", "timer-period-row", "mb-2", "border", "gap-0", "mx-0");
+    row.classList.add("row", "g-2", "align-items-end", "timer-period-row", "mb-2", "border", "gap-0", "mx-0", "p-2");
 
     const typeCol = document.createElement("div");
     typeCol.classList.add("col-md-2");
@@ -154,7 +154,7 @@ export const addPeriodRowTemplate = () => {
     removeCol.appendChild(controlsWrap);
 
     const settingsCol = document.createElement("div");
-    settingsCol.classList.add("col-12", "d-none", "period-settings-container");
+    settingsCol.classList.add("col-12", "d-none", "p-2", "period-settings-container");
 
     const settingsRow = document.createElement("div");
     settingsRow.classList.add("row", "g-2", "align-items-end", "pt-2", "border-top", "mt-1");

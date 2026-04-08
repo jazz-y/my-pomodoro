@@ -260,8 +260,8 @@ const updatePlayPauseButton = () => {
     }
 
     if (timerState.isRunning) {
-        playPauseButton.classList.remove("btn-success");
-        playPauseButton.classList.add("btn-warning");
+        playPauseButton.classList.remove("btn-warning");
+        playPauseButton.classList.add("btn-success");
         playPauseButton.setAttribute("aria-label", "Pause timer");
         playPauseButton.innerHTML = PAUSE_ICON;
         return;
