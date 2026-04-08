@@ -3,16 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customizable Pomodoro Timer</title>
+    <title>My Pomodoro Timer</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap-5.3.8-dist/css/bootstrap.css">
 </head>
-<body>
+<body class="container">
+    <h1>My Pomodoro Timer</h1>
 
-    <h1>Customizable Pomodoro Timer</h1>
+    <div id="timer-div" class="container px-0">
+        <section id="timer-container" class="app-section border rounded p-3 bg-body">
+            <h2 id="cur-timer-name" class="h2">Timer</h2>
+            <div id="timer-content">
+                <div id="timer-main-display">
+                    <span id="timer-minutes" class="display-1">00</span>
+                    <span id="timer-separator" class="display-1">:</span>
+                    <span id="timer-seconds" class="display-1">00</span>
+                </div>
+                <div id="timer-image-panel">
+                    <img id="timer-image" src="" alt="Random dog for focus" class="img-fluid d-block mx-auto timer-dog-image">
+                    <p class="mb-0 mt-2">Focus for this cutie!</p>
+                </div>
+            </div>
+            <div id="timer-controls" class="d-flex gap-2 mt-3 pb-2">
+                <button id="skip-backward-btn" type="button" class="btn btn-outline-secondary" aria-label="Previous period">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-skip-backward-fill" viewBox="0 0 16 16">
+                        <path d="M4 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 4 4"/>
+                        <path d="M4.697 8.354 10.286 11.5c.67.377 1.214.09 1.214-.67V5.17c0-.76-.544-1.047-1.214-.67L4.697 7.646a.5.5 0 0 0 0 .708"/>
+                    </svg>
+                </button>
+                <button id="play-pause-btn" type="button" class="btn btn-success" aria-label="Start timer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                        <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393"/>
+                    </svg>
+                </button>
+                <button id="skip-forward-btn" type="button" class="btn btn-outline-secondary" aria-label="Next period">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-skip-forward-fill" viewBox="0 0 16 16">
+                        <path d="M12 4a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 1 0v-7A.5.5 0 0 0 12 4"/>
+                        <path d="M4.714 4.5C4.044 4.123 3.5 4.41 3.5 5.17v5.66c0 .76.544 1.047 1.214.67l5.589-3.146a.5.5 0 0 0 0-.708z"/>
+                    </svg>
+                </button>
+                <button id="reset-btn" type="button" class="btn btn-danger">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2z"/>
+                        <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466"/>
+                    </svg>
+                </button>
+            </div>
+            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6zCID88oNjNv9zx6puDHKj?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </section>
 
-    <div id="timer-div">
+        <section id="plan-container" class="app-section border rounded p-3 bg-body container">
+            <div id="plan-header" class="d-flex justify-content-between align-items-center mb-2 container">
+                <h2 class="h4 mb-0">My Plan</h2>
+                <button id="add-period-btn" type="button" class="btn btn-outline-primary">Add Period</button>
+            </div>
+            <form id="plan-form" class="container p-2 d-flex flex-column flex-grow-1 overflow-hidden">
+                <div id="plan-content" class="container px-0 d-flex flex-column flex-grow-1 overflow-auto gap-2 mb-2 border">
 
+                </div>
+                <div id="plan-footer" class="container">
+                    <input id="save-plan-btn" type="submit" class="btn btn-success" value="Save Plan">
+                </div>
+            </form>
+        </section>
     </div>
-    <script src="script.js"></script>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="plan-save-toast" class="toast text-bg-success border-0" role="status" aria-live="polite" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">Plan saved!</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+        <div id="plan-required-toast" class="toast text-bg-warning border-0 mt-2" role="status" aria-live="polite" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">Save a plan before using timer controls.</div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+        <div id="minimum-period-toast" class="toast text-bg-warning border-0 mt-2" role="status" aria-live="polite" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">You need at least one timer period.</div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+        <div id="notification-issue-toast" class="toast text-bg-warning border-0 mt-2" role="status" aria-live="polite" aria-atomic="true">
+            <div class="d-flex">
+                <div id="notification-issue-toast-body" class="toast-body">Browser notifications are unavailable.</div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="bootstrap-5.3.8-dist/js/bootstrap.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
