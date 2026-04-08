@@ -188,3 +188,14 @@ h2,
     background-color: var(--palette-4) !important;
     color: #12324a;
 }
+
+@media (max-width: 767.98px) {
+    #timer-div {
+        flex-direction: column;
+    }
+
+    .app-section {
+        width: 100%;
+        height: auto;
+    }
+}
