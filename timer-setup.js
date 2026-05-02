@@ -192,14 +192,21 @@ export const addPeriodRowTemplate = () => {
     intervalInput.classList.add("form-control", "timer-notify-interval-input");
     intervalInput.disabled = true;
 
-    notifyInput.addEventListener("change", () => {
-        const isEnabled = notifyInput.checked;
-        intervalInput.disabled = !isEnabled;
-        intervalInput.required = isEnabled;
+    const syncNotificationFieldsState = () => {
+        const isSettingsOpen = !settingsCol.classList.contains("d-none");
+        const isNotifyEnabled = notifyInput.checked;
 
-        if (!isEnabled) {
+        notifyInput.disabled = !isSettingsOpen;
+        intervalInput.disabled = !isSettingsOpen || !isNotifyEnabled;
+        intervalInput.required = isSettingsOpen && isNotifyEnabled;
+
+        if (!isNotifyEnabled) {
             intervalInput.value = "";
         }
+    };
+
+    notifyInput.addEventListener("change", () => {
+        syncNotificationFieldsState();
     });
 
     let settingsOpen = false;
@@ -209,7 +216,11 @@ export const addPeriodRowTemplate = () => {
         settingsToggleButton.innerHTML = settingsOpen
             ? `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8"/></svg>`
             : `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 2.5a.5.5 0 0 1 .5.5v4.5H13a.5.5 0 0 1 0 1H8.5V13a.5.5 0 0 1-1 0V8.5H3a.5.5 0 0 1 0-1h4.5V3a.5.5 0 0 1 .5-.5"/></svg>`;
+
+        syncNotificationFieldsState();
     });
+
+    syncNotificationFieldsState();
 
     intervalCol.appendChild(intervalLabel);
     intervalCol.appendChild(intervalInput);
